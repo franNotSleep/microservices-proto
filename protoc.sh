@@ -15,9 +15,11 @@ go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
 protoc --go_out=./golang --go_opt=paths=source_relative \
   --go-grpc_out=./golang --go-grpc_opt=paths=source_relative \
  ./${SERVICE_NAME}/*.proto
+go mod init \
+  github.com/frannotsleep/microservices-proto/golang/ || true
 cd golang/${SERVICE_NAME}
 go mod init \
-  github.com/huseyinbabal/microservices-proto/golang/${SERVICE_NAME} || true
+  github.com/frannotsleep/microservices-proto/golang/${SERVICE_NAME} || true
 go mod tidy
 cd ../../
 git add . && git commit -am "proto update" || true
